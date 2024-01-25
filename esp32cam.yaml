@@ -1,0 +1,75 @@
+
+# Configuration for ESP32Cam Module
+esphome:
+  name: esp32cam
+
+esp32:
+  board: esp32cam
+  framework:
+    type: arduino
+
+# enable PSRAM
+psram:
+  mode: octal
+  speed: 80MHz
+
+# Enable logging
+logger:
+  # level: DEBUG
+
+# Enable Home Assistant API
+api:
+  password: ""
+
+# WIFI Credentials
+wifi:
+  ssid: "<SSID>"
+  password: "<Password>"
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Esp32Cam Fallback Hotspot"
+    password: "<Another Password>"
+
+captive_portal:
+
+# OTA Update Component
+ota:
+  password: ""
+
+# Integrated Web Server for OTA, Flash etc.
+web_server:
+  port: 80
+
+# Light for integrated Flash
+light:
+  - platform: binary
+    name: "Integrated Flash"
+    output: flash_out
+output:
+  - id: flash_out
+    platform: gpio
+    pin: GPIO4
+
+# Enable Cam with 800x600 resolution
+esp32_camera:
+  name: ESP32Cam
+  external_clock:
+    pin: GPIO0
+    frequency: 20MHz
+  i2c_pins:
+    sda: GPIO26
+    scl: GPIO27
+  data_pins: [GPIO5, GPIO18, GPIO19, GPIO21, GPIO36, GPIO39, GPIO34, GPIO35]
+  vsync_pin: GPIO25
+  href_pin: GPIO23
+  pixel_clock_pin: GPIO22
+  power_down_pin: GPIO32
+  resolution: 800X600
+
+# Enable Stream and Snapshot URLs
+esp32_camera_web_server:
+  - port: 8080
+    mode: stream
+  - port: 8081
+    mode: snapshot
