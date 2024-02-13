@@ -1,4 +1,3 @@
-
 # Configuration for ESP32Cam Module
 esphome:
   name: esp32cam
@@ -15,7 +14,6 @@ psram:
 
 # Enable logging
 logger:
-  # level: DEBUG
 
 # Enable Home Assistant API
 api:
@@ -23,13 +21,12 @@ api:
 
 # WIFI Credentials
 wifi:
-  ssid: "<SSID>"
-  password: "<Password>"
+  ssid: !secret ssid
+  password: !secret pass
 
-  # Enable fallback hotspot (captive portal) in case wifi connection fails
   ap:
     ssid: "Esp32Cam Fallback Hotspot"
-    password: "<Another Password>"
+    password: "SomePassword"
 
 captive_portal:
 
