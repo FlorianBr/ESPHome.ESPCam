@@ -32,7 +32,7 @@ captive_portal:
 
 # OTA Update Component
 ota:
-  password: ""
+  - platform: esphome
 
 # Integrated Web Server for OTA, Flash etc.
 web_server:
@@ -48,7 +48,7 @@ output:
     platform: gpio
     pin: GPIO4
 
-# Enable Cam with 800x600 resolution
+# Enable Cam
 esp32_camera:
   name: ESP32Cam
   external_clock:
@@ -62,7 +62,13 @@ esp32_camera:
   href_pin: GPIO23
   pixel_clock_pin: GPIO22
   power_down_pin: GPIO32
-  resolution: 800X600
+  # Image settings
+  icon: mdi:camera
+  idle_framerate: 0.1 fps
+  max_framerate: 10 fps
+  # resolution: 1280x1024
+  resolution: 1600x1200
+  jpeg_quality: 20
 
 # Enable Stream and Snapshot URLs
 esp32_camera_web_server:
